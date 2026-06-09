@@ -4302,6 +4302,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HandLeft
       objectReference: {fileID: 0}
+    - target: {fileID: 381849978406857172, guid: 341ab22ff1a463b4c90e19579cd9e2a4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3056976568799601975, guid: 341ab22ff1a463b4c90e19579cd9e2a4, type: 3}
       propertyPath: player
       value: 
@@ -4328,15 +4332,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9194543392997540534, guid: 341ab22ff1a463b4c90e19579cd9e2a4, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9194543392997540534, guid: 341ab22ff1a463b4c90e19579cd9e2a4, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9194543392997540534, guid: 341ab22ff1a463b4c90e19579cd9e2a4, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9194543392997540534, guid: 341ab22ff1a463b4c90e19579cd9e2a4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
