@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.XR;
 
-public class HandManager : MonoBehaviour
+public class HandInput : MonoBehaviour
 {
     [SerializeField] XRNode handNode;
 

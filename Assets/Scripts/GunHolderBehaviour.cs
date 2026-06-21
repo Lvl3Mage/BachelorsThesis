@@ -1,19 +1,19 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(HandManager))]
+[RequireComponent(typeof(HandInput))]
 public class GunHolderBehaviour : MonoBehaviour, IHandBehaviour
 {
 	GunSlot slot;
 	[SerializeField] float pickupRange;
 	[SerializeField] Transform gunLocation;
 	[SerializeField] int priority = 5;
-	HandManager hand;
+	HandInput hand;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-	    hand = GetComponent<HandManager>();
+	    hand = GetComponent<HandInput>();
     }
 
     void Start()
@@ -43,7 +43,12 @@ public class GunHolderBehaviour : MonoBehaviour, IHandBehaviour
 	    equippedGun = null;
     }
 
-    public void Tick() { }
+    public void Tick()
+    {
+	    if (hand.GetInputTrigger() > 0.8f){
+		    equippedGun?.TryShoot();
+	    }
+    }
 
     public HandPose GetPose()
     {

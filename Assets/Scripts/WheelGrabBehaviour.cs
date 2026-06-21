@@ -2,7 +2,7 @@ using System.Linq;
 using Lvl3Mage.InterpolationToolkit;
 using UnityEngine;
 
-[RequireComponent(typeof(HandManager))]
+[RequireComponent(typeof(HandInput))]
 public class WheelGrabBehaviour : MonoBehaviour, IHandBehaviour
 {
 	[SerializeField] float gripRange = 0.4f;
@@ -12,11 +12,12 @@ public class WheelGrabBehaviour : MonoBehaviour, IHandBehaviour
 	[SerializeField] Transform player;
 	WheelController[] wheels;
 	[SerializeField] int priority = 5;
-	HandManager hand;
+	
+	HandInput hand;
 
 	void Start()
 	{
-		hand = GetComponent<HandManager>();
+		hand = GetComponent<HandInput>();
 		wheels = GameObject.FindGameObjectsWithTag("Wheel").Select(o => o.GetComponent<WheelController>()).ToArray();
 	}
 

@@ -9,11 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9194543392997540534}
-  - component: {fileID: 3058447264174450118}
-  - component: {fileID: 5151635451642977123}
-  - component: {fileID: 3056976568799601975}
-  - component: {fileID: 101187490469328003}
-  - component: {fileID: 6058365322833280160}
+  - component: {fileID: 3922865894906995423}
   m_Layer: 0
   m_Name: Hand
   m_TagString: Untagged
@@ -35,22 +31,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 891430289019198452}
+  - {fileID: 605749837342045262}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3058447264174450118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 381849978406857172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f5af76ac2bb0b44eb3abccc958df9a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HandTracker
-  handNode: 4
---- !u!114 &5151635451642977123
+--- !u!114 &3922865894906995423
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -63,50 +47,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   handVisualizer: {fileID: 503885949089687747}
---- !u!114 &3056976568799601975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 381849978406857172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16a01af568487424c95f8bd112d86f1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GrabController
-  gripRange: 0.2
-  maxStrength: 15
-  player: {fileID: 0}
-  priority: 5
---- !u!114 &101187490469328003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 381849978406857172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8eb2e13fdf047ab409483a6baf2a4307, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  pickupRange: 0.2
-  gunLocation: {fileID: 6281344882883991667}
-  priority: 5
---- !u!114 &6058365322833280160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 381849978406857172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2539a629dbdd4910b03e35dd2a07987c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::IdleHandBehaviour
-  priority: 0
 --- !u!1 &2418594090374508991
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,7 +59,7 @@ GameObject:
   - component: {fileID: 3278005660881563806}
   - component: {fileID: 8120817221178665809}
   m_Layer: 0
-  m_Name: Magnet
+  m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -245,6 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34640f084a0894d4dba97c5d3468392c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  relativeRef: {fileID: 0}
 --- !u!1 &6413877081444185287
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,3 +217,146 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4315850679124772828}
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
+--- !u!1 &7324968656487613589
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1260973215993766878}
+  m_Layer: 0
+  m_Name: InteractionPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1260973215993766878
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7324968656487613589}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 605749837342045262}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8038847780733094721
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 605749837342045262}
+  - component: {fileID: 1947503103910299411}
+  - component: {fileID: 3304968327002774102}
+  - component: {fileID: 1300457973025408612}
+  - component: {fileID: 5980006428758050800}
+  - component: {fileID: 6392796648511507479}
+  m_Layer: 0
+  m_Name: Input
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &605749837342045262
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8038847780733094721}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1260973215993766878}
+  m_Father: {fileID: 9194543392997540534}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1947503103910299411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8038847780733094721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f5af76ac2bb0b44eb3abccc958df9a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HandManager
+  handNode: 4
+--- !u!114 &3304968327002774102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8038847780733094721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eb2e13fdf047ab409483a6baf2a4307, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  pickupRange: 0.2
+  gunLocation: {fileID: 6281344882883991667}
+  priority: 5
+--- !u!114 &1300457973025408612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8038847780733094721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16a01af568487424c95f8bd112d86f1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrabController
+  gripRange: 0.2
+  maxStrength: 15
+  player: {fileID: 0}
+  priority: 5
+--- !u!114 &5980006428758050800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8038847780733094721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2539a629dbdd4910b03e35dd2a07987c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IdleHandBehaviour
+  priority: 0
+--- !u!114 &6392796648511507479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8038847780733094721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72dff377e240b1740bcc0cbfe0289f4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  interactableLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  interactionRadius: 0.1
+  interactionPoint: {fileID: 1260973215993766878}
+  interactionPriority: 3

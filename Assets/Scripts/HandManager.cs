@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class HandBehaviourManager : MonoBehaviour
+public class HandManager : MonoBehaviour
 {
 	IHandBehaviour[] behaviours;
 	[SerializeField] HandVisualizer handVisualizer;

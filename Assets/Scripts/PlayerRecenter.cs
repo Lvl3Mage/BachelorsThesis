@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerRecenter : MonoBehaviour
 {
-	[SerializeField] HandManager handLeft, handRight;
+	[SerializeField] HandInput handLeft, handRight;
 
 	[SerializeField] Transform camera;
 
