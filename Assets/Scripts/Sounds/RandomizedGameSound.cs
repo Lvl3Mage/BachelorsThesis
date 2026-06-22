@@ -6,21 +6,19 @@ namespace Project.Sounds
 	public class RandomizedGameSound : GameSound
 	{
 		[SerializeField] AudioClip[] clips;
-		[SerializeField][Range(0,1)] float volume = 1;
+		[SerializeField] SoundParamConfig config;
 		[SerializeField] [Range(0,1)] float volumeVariance;
-		[SerializeField][Range(0,1)] float pitch = 1;
 		[SerializeField] [Range(0,1)] float pitchVariance;
 
 
-		public override SoundData GetSound()
+		public override void Apply(AudioSource source)
 		{
-			if (clips.Length == 0) return null;
+			if (clips.Length == 0) return;
 			AudioClip clip = clips[Random.Range(0, clips.Length)];
-			return new SoundData{
-				Clip = clip,
-				Volume = volume + Random.Range(-volumeVariance, volumeVariance),
-				Pitch = pitch + Random.Range(-pitchVariance, pitchVariance)
-			};
+			source.clip = clip;
+			config.Apply(source);
+			source.volume += Random.Range(-volumeVariance, volumeVariance);
+			source.pitch +=Random.Range(-pitchVariance, pitchVariance);
 		}
 	}
 }

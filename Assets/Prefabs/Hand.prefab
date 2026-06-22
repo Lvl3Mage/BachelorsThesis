@@ -313,6 +313,8 @@ MonoBehaviour:
   pickupRange: 0.2
   gunLocation: {fileID: 6281344882883991667}
   priority: 5
+  gripSound: {fileID: 11400000, guid: eed39c538c87481489e3a1242de53b2b, type: 2}
+  ungripSound: {fileID: 11400000, guid: aed3fc6ab993b4d48b18169e1f3028be, type: 2}
 --- !u!114 &1300457973025408612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,6 +331,8 @@ MonoBehaviour:
   maxStrength: 15
   player: {fileID: 0}
   priority: 5
+  gripSound: {fileID: 11400000, guid: eed39c538c87481489e3a1242de53b2b, type: 2}
+  ungripSound: {fileID: 11400000, guid: aed3fc6ab993b4d48b18169e1f3028be, type: 2}
 --- !u!114 &5980006428758050800
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,23 +1,42 @@
+using System;
 using UnityEngine;
 
 namespace Project.Sounds
 {
+	[Serializable]
+	public class SoundParamConfig : IGameSound
+	{
+
+		[SerializeField][Range(0,1)] float volume = 1;
+		[SerializeField][Range(0,1)] float pitch = 1;
+		[SerializeField] [Range(0, 1)] float spatialBlend = 0;
+		[SerializeField] float minDistance = 1;
+		[SerializeField] float maxDistance = 500;
+
+
+		public void Apply(AudioSource source)
+		{
+			source.volume = volume;
+			source.pitch = pitch;
+			source.spatialBlend = spatialBlend;
+			source.minDistance = minDistance;
+			source.maxDistance = maxDistance;
+
+		}
+	}
 	[CreateAssetMenu(fileName = "Game Sound", menuName = "Sounds/Basic Game Sound")]
 	public class BasicGameSound : GameSound
 	{
 
 		[SerializeField] AudioClip clip;
-		[SerializeField][Range(0,1)] float volume = 1;
-		[SerializeField][Range(0,1)] float pitch = 1;
+		[SerializeField] SoundParamConfig config;
 
 
-		public override SoundData GetSound()
+		public override void Apply(AudioSource source)
 		{
-			return new SoundData{
-				Clip = clip,
-				Volume = volume,
-				Pitch = pitch
-			};
+			source.clip = clip;
+			config.Apply(source);
+
 		}
 	}
 }

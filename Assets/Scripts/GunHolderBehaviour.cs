@@ -1,4 +1,5 @@
 using System;
+using Project.Sounds;
 using UnityEngine;
 
 [RequireComponent(typeof(HandInput))]
@@ -8,6 +9,8 @@ public class GunHolderBehaviour : MonoBehaviour, IHandBehaviour
 	[SerializeField] float pickupRange;
 	[SerializeField] Transform gunLocation;
 	[SerializeField] int priority = 5;
+	[SerializeField] GameSound gripSound;
+	[SerializeField] GameSound ungripSound;
 	HandInput hand;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -35,10 +38,12 @@ public class GunHolderBehaviour : MonoBehaviour, IHandBehaviour
     {
 	    equippedGun = slot.RetrieveGun();
 	    equippedGun.Equip(gunLocation);
+	    AudioManager.Play(gripSound,()=>transform.position);
     }
 
     public void Exit()
     {
+	    AudioManager.Play(ungripSound, ()=>transform.position);
 	    equippedGun?.Discard();
 	    equippedGun = null;
     }

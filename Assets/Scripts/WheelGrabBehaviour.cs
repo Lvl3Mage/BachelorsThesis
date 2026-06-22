@@ -1,5 +1,6 @@
 using System.Linq;
 using Lvl3Mage.InterpolationToolkit;
+using Project.Sounds;
 using UnityEngine;
 
 [RequireComponent(typeof(HandInput))]
@@ -12,6 +13,8 @@ public class WheelGrabBehaviour : MonoBehaviour, IHandBehaviour
 	[SerializeField] Transform player;
 	WheelController[] wheels;
 	[SerializeField] int priority = 5;
+	[SerializeField] GameSound gripSound;
+	[SerializeField] GameSound ungripSound;
 	
 	HandInput hand;
 
@@ -61,11 +64,13 @@ public class WheelGrabBehaviour : MonoBehaviour, IHandBehaviour
 		Debug.Assert(validWheel);
 		grabbedWheel = validWheel;
 		SetPreviousPose(grabbedWheel.GetGripPoseAt(transform.position));
+		AudioManager.Play(gripSound,()=>transform.position);
 	}
 
 	public void Exit()
 	{
 		grabbedWheel = null;
+		AudioManager.Play(ungripSound,()=>transform.position);
 	}
 
 	public void Tick()

@@ -8,11 +8,11 @@ namespace Project.Sounds
 		[SerializeField] GameSound[] sounds;
 
 
-		public override SoundData GetSound()
+		public override void Apply(AudioSource source)
 		{
-			if (sounds.Length == 0) return null;
+			if (sounds.Length == 0) return;
 			GameSound sound = sounds[Random.Range(0, sounds.Length)];
-			return sound.GetSound();
+			sound.Apply(source);
 		}
 	}
 }

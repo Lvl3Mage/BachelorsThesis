@@ -171,6 +171,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   bulletPrefab: {fileID: 6094835496772188083, guid: 8273a1e7890712d43875e05cb7eee349, type: 3}
   totalAmmo: 5
-  cooldownTime: 0.1
+  cooldownTime: 0.3
   gunPoint: {fileID: 7521912384713678221}
   muzzleVelocity: 20
+  attractionStrength: 18
+  shotSound: {fileID: 11400000, guid: 5a6ead21a1c76aa4ba661f725691337d, type: 2}

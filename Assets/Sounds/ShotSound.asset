@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e70f19ea9a840b4aead3dbc71e47d6d, type: 3}
+  m_Name: ShotSound
+  m_EditorClassIdentifier: Assembly-CSharp::Project.Sounds.RandomizedGameSound
+  clips:
+  - {fileID: 8300000, guid: bc67161310d82d740b51ae34370d5266, type: 3}
+  config:
+    volume: 0.721
+    pitch: 1
+    spatialBlend: 1
+    minDistance: 1
+    maxDistance: 500
+  volumeVariance: 0
+  pitchVariance: 0.234

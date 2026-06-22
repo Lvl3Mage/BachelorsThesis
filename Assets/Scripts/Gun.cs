@@ -1,6 +1,9 @@
 using System;
 using System.Collections;
+using Lvl3Mage.InterpolationToolkit;
+using Project.Sounds;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Gun : MonoBehaviour
 {
@@ -10,7 +13,8 @@ public class Gun : MonoBehaviour
 	[SerializeField] float cooldownTime = 0.1f;
 	[SerializeField] Transform gunPoint;
 	[SerializeField] float muzzleVelocity = 20;
-
+	[SerializeField] float attractionStrength = 18;
+	[SerializeField] GameSound shotSound;
 	int currentAmmo;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,6 +37,7 @@ public class Gun : MonoBehaviour
 	    if (currentAmmo == 0) return false;
 	    if (IsOnCooldown()) return false;
 	    Shoot();
+	    StartCoroutine(BeginCooldown());
 	    return true;
     }
 
@@ -40,14 +45,22 @@ public class Gun : MonoBehaviour
     {
 	    Bullet bullet = Instantiate(bulletPrefab, gunPoint.position, gunPoint.rotation);
 	    bullet.GetComponent<Rigidbody>().linearVelocity = gunPoint.forward * muzzleVelocity;
+	    recoilOffset -= gunPoint.forward * 0.2f;
+	    recoilRotationOffset *= Quaternion.AngleAxis(-60,Vector3.right) *Quaternion.AngleAxis(Random.Range(-30f,30f), Vector3.up);
+	    AudioManager.Play(shotSound, ()=>transform.position);
     }
 
+    Vector3 recoilOffset;
+
+    Quaternion recoilRotationOffset;
     // Update is called once per frame
     void Update()
     {
 	    if (!assignedTarget) return;
-	    transform.position = assignedTarget.position;
-	    transform.rotation = assignedTarget.rotation;
+	    transform.position = Decay.To(transform.position, assignedTarget.position + recoilOffset, attractionStrength, Time.deltaTime);
+	    transform.rotation = Decay.To(transform.rotation, assignedTarget.rotation *recoilRotationOffset, attractionStrength, Time.deltaTime, Quaternion.Slerp);
+	    recoilOffset = Decay.To(recoilOffset, Vector3.zero, 10, Time.deltaTime);
+	    recoilRotationOffset = Decay.To(recoilRotationOffset, Quaternion.identity, 10, Time.deltaTime, Quaternion.Slerp);
     }
 
     Transform assignedTarget;
