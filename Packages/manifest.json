@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "com.lvl3mage.interpolation-toolkit": "1.1.4",
+    "com.lvl3mage.math-toolkit": "1.0.3",
     "com.unity.ai.navigation": "2.0.12",
     "com.unity.collab-proxy": "2.12.4",
     "com.unity.ide.rider": "3.0.40",

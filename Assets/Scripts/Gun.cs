@@ -15,6 +15,9 @@ public class Gun : MonoBehaviour
 	[SerializeField] float muzzleVelocity = 20;
 	[SerializeField] float attractionStrength = 18;
 	[SerializeField] GameSound shotSound;
+	[SerializeField] float linearRecoil = 0.2f;
+	[SerializeField] Vector2 recoilYaw = new Vector2(-30f,30f);
+	[SerializeField] Vector2 recoilPitch = new Vector2(-60f, -30f);
 	int currentAmmo;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -45,8 +48,8 @@ public class Gun : MonoBehaviour
     {
 	    Bullet bullet = Instantiate(bulletPrefab, gunPoint.position, gunPoint.rotation);
 	    bullet.GetComponent<Rigidbody>().linearVelocity = gunPoint.forward * muzzleVelocity;
-	    recoilOffset -= gunPoint.forward * 0.2f;
-	    recoilRotationOffset *= Quaternion.AngleAxis(-60,Vector3.right) *Quaternion.AngleAxis(Random.Range(-30f,30f), Vector3.up);
+	    recoilOffset -= gunPoint.forward * linearRecoil;
+	    recoilRotationOffset *= Quaternion.AngleAxis(Random.Range(recoilPitch.x,recoilPitch.y),Vector3.right) *Quaternion.AngleAxis(Random.Range(recoilYaw.x,recoilYaw.y), Vector3.up);
 	    AudioManager.Play(shotSound, ()=>transform.position);
     }
 
