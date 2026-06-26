@@ -5,18 +5,14 @@ using UnityEngine;
 
 public class EnemyMovementController : MonoBehaviour
 {
-	[SerializeField] Transform player;
-	[SerializeField] Transform[] targets;
 	[SerializeField] Transform barrelBone, leftBone, rightBone;
 	[SerializeField] float maxRotationSpeed = 2;
 	[SerializeField] float rotationSlowdownRange = 30f;
-	int curIndex = 0;
 	Rigidbody rb;
 
 	void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
-		player = GameObject.FindGameObjectWithTag("Player").transform;
 	}
 
 	[SerializeField] float maxMovementSpeed = 4;
@@ -25,17 +21,6 @@ public class EnemyMovementController : MonoBehaviour
 
 	void Update()
 	{
-		Vector3 targetPos = targets[curIndex].position;
-		if ((targetPos - transform.position).sqrMagnitude < 0.1f){
-			curIndex++;
-			if (curIndex >= targets.Length){
-				curIndex = 0;
-			}
-
-			targetPos = targets[curIndex].position;
-		}
-
-		AimAt(targetPos);
 
 
 		ControlBones();
@@ -77,7 +62,7 @@ public class EnemyMovementController : MonoBehaviour
 			Mathf.Clamp(RangeTools.TransformRange(Mathf.Abs(angle), 0f, rotationSlowdownRange, 0f, maxRotationSpeed),
 				0f, maxRotationSpeed) * angleSign;
 		rb.angularVelocity = Decay.To(rb.angularVelocity, Vector3.up * targetAngularVelocity, 5, Time.deltaTime);
-
+		rb.linearVelocity =Decay.To(rb.linearVelocity,Vector3.zero, 3, Time.deltaTime);
 		Vector3 barrelTargetDelta = target - barrelBone.position;
 		Vector3 horizontalBarrelDelta = new Vector3(barrelTargetDelta.x, 0, barrelTargetDelta.z);
 		targetBarrelRotation = Mathf.Atan2(Vector3.Dot(transform.up, barrelTargetDelta),Vector3.Dot(horizontalBarrelDelta.normalized, barrelTargetDelta));
