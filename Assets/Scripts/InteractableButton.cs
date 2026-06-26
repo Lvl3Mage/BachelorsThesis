@@ -8,12 +8,12 @@ public class InteractableButton : MonoBehaviour
 	[SerializeField] Transform interactionPose;
 	public void StartHover()
 	{
-		animator.SetBool("Hover", true);
+		// animator.SetBool("Hover", true);
 	}
 
 	public void EndHover()
 	{
-		animator.SetBool("Hover", false);
+		// animator.SetBool("Hover", false);
 
 	}
 

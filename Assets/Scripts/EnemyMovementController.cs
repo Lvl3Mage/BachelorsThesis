@@ -45,14 +45,24 @@ public class EnemyMovementController : MonoBehaviour
 		float targetAngularVelocity =
 			Mathf.Clamp(RangeTools.TransformRange(Mathf.Abs(angle), 0f, rotationSlowdownRange, 0f, maxRotationSpeed),
 				0f, maxRotationSpeed) * angleSign;
-		// Debug.Log(angle);
 		rb.angularVelocity = Decay.To(rb.angularVelocity, Vector3.up * targetAngularVelocity, 5, Time.deltaTime);
+	}
+
+	void FixedUpdate()
+	{
+		rb.angularVelocity = new Vector3(0, rb.angularVelocity.y, 0);
+
+	}
+
+	void LateUpdate()
+	{
+		transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, 0);//kinda ugly but works to prevent unwanted rotations in xz
 	}
 
 	public void AimAt(Vector3 target)
 	{
 		Vector3 targetDelta = target - transform.position;
-		Vector3 movementDelta = new Vector3(targetDelta.x, 0, targetDelta.z);
+		Vector3 movementDelta = new(targetDelta.x, 0, targetDelta.z);
 		Vector3 movementDir = movementDelta.normalized;
 
 		float angle = Vector2.SignedAngle(new Vector2(movementDir.x, movementDir.z),
@@ -63,8 +73,9 @@ public class EnemyMovementController : MonoBehaviour
 				0f, maxRotationSpeed) * angleSign;
 		rb.angularVelocity = Decay.To(rb.angularVelocity, Vector3.up * targetAngularVelocity, 5, Time.deltaTime);
 		rb.linearVelocity =Decay.To(rb.linearVelocity,Vector3.zero, 3, Time.deltaTime);
+		rb.angularVelocity = new Vector3(0, rb.angularVelocity.y, 0);
 		Vector3 barrelTargetDelta = target - barrelBone.position;
-		Vector3 horizontalBarrelDelta = new Vector3(barrelTargetDelta.x, 0, barrelTargetDelta.z);
+		Vector3 horizontalBarrelDelta = new(barrelTargetDelta.x, 0, barrelTargetDelta.z);
 		targetBarrelRotation = Mathf.Atan2(Vector3.Dot(transform.up, barrelTargetDelta),Vector3.Dot(horizontalBarrelDelta.normalized, barrelTargetDelta));
 	}
 

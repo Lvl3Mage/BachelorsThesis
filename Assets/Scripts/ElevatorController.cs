@@ -1,5 +1,8 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Lvl3Mage.CoroutineToolkit;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,22 +11,29 @@ public class ElevatorController : MonoBehaviour
 
 	[SerializeField] bool isEntrance;
 	[SerializeField] bool openDoors = true;
+	[SerializeField] bool openPanel = true;
 	[SerializeField] Transform defaultPlayerSpawn;
 	[SerializeField] GameObject playerPrefab;
-	[SerializeField] Animator animator;
+	[SerializeField] TogglableObject[] doors;
+	[SerializeField] TogglableObject[] panelObjects;
 
 	static bool initialized;
 	static Vector3 relativePlayerPosition;
 	static Quaternion relativePlayerRotation;
-	static readonly int Open = Animator.StringToHash("Open");
-
 
 	void Awake()
 	{
 
+		if (openDoors){
+			StartCoroutine(AnimateDoors(false));
+		}
+
+		if (openPanel){
+			StartCoroutine(AnimatePanel(true));
+
+		}
 		if (!isEntrance) return;
 		if (!initialized){
-			Debug.Log("Initializing");
 			relativePlayerPosition = transform.InverseTransformPoint(defaultPlayerSpawn.position);
 			relativePlayerRotation = Quaternion.Inverse(transform.rotation) * defaultPlayerSpawn.rotation;
 			initialized = true;
@@ -37,9 +47,6 @@ public class ElevatorController : MonoBehaviour
 		}
 		player.transform.position = transform.TransformPoint(relativePlayerPosition);
 		player.transform.rotation = transform.rotation * relativePlayerRotation;
-		if (openDoors){
-			animator.SetBool(Open, true);
-		}
 	}
 	public void LoadScene(int sceneBuildIndex)
 	{
@@ -50,17 +57,33 @@ public class ElevatorController : MonoBehaviour
 	{
 
 		var player = GameObject.FindGameObjectWithTag("Player").transform;
+		List<Coroutine> coroutines = new();
+		if (openPanel){
+			coroutines.Add(StartCoroutine(AnimatePanel(false)));
 
-		if (openDoors){
-			animator.SetBool(Open, false);
-			yield return new WaitForSeconds(1);//todo jank
 		}
+		if (openDoors){
+			coroutines.Add(StartCoroutine(AnimateDoors(true)));
+		}
+
+		yield return CoroutineUtility.WaitForAll(coroutines.ToArray());
 		AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneBuildIndex);
 		while (!asyncLoad.isDone){
 			relativePlayerPosition = transform.InverseTransformPoint(player.position);
 			relativePlayerRotation = Quaternion.Inverse(transform.rotation) * player.rotation;
 			yield return null;
 		}
+
+	}
+
+	IEnumerator AnimateDoors(bool close)
+	{
+		yield return CoroutineUtility.WaitForAll(doors.Select(door => door.SetEnabled(close)).ToArray());
+
+	}
+	IEnumerator AnimatePanel(bool open)
+	{
+		yield return CoroutineUtility.WaitForAll(panelObjects.Select(o => o.SetEnabled(open)).ToArray());
 
 	}
 }

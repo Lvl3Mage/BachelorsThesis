@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6725877859329480081}
   - component: {fileID: 4859467576571113808}
   - component: {fileID: 5641927660658253845}
-  - component: {fileID: 7794941495469247257}
   - component: {fileID: 953723682068261848}
+  - component: {fileID: 5760215940733664787}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Untagged
@@ -67,7 +67,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2750842425755490838}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -85,7 +85,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &5641927660658253845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,29 +112,6 @@ MonoBehaviour:
   movementController: {fileID: 6725877859329480081}
   gun: {fileID: 953723682068261848}
   shotAlignmentThreshold: 5
---- !u!136 &7794941495469247257
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2750842425755490838}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.3
-  m_Height: 1
-  m_Direction: 0
-  m_Center: {x: 0, y: -0.14, z: 0}
 --- !u!114 &953723682068261848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,10 +124,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 996ce2dfdc7fd724eb1a1208dbc116e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  barrelEnd: {fileID: 6626593577179470942}
+  barrelEnd: {fileID: 276121780378893242}
   bulletPrefab: {fileID: 3615515758301643739, guid: 148976d31e548d24baa6f53e8ef552cd, type: 3}
   cooldownTime: 2
   bulletVelocity: 20
+--- !u!114 &5760215940733664787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2750842425755490838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7a7e66bf91747f41a8aa70ae5c49eef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestructibleObject
+  destructionEffect: {fileID: 0}
+  health: 40
+  destructionSound: {fileID: 0}
+  damageSound: {fileID: 0}
+  destroyOnKill: 1
+--- !u!1 &3410615565927811926
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 276121780378893242}
+  m_Layer: 10
+  m_Name: GunPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &276121780378893242
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3410615565927811926}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
+  m_LocalPosition: {x: 0, y: 0.506, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2442695483472402540}
+  m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
 --- !u!1 &6720884399577268569
 GameObject:
   m_ObjectHideFlags: 0
@@ -10080,26 +10105,117 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -2131421840579788839, guid: 7ef39870b91197d42bb25dc8889a7053, type: 3}
       insertIndex: -1
       addedObject: {fileID: 450769411448682650}
-    m_AddedComponents: []
+    - targetCorrespondingSourceObject: {fileID: -4232825930902646801, guid: 7ef39870b91197d42bb25dc8889a7053, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 276121780378893242}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2711365659083984159, guid: 7ef39870b91197d42bb25dc8889a7053, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1018856926722265399}
+    - targetCorrespondingSourceObject: {fileID: 8350979637910893868, guid: 7ef39870b91197d42bb25dc8889a7053, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3370129035035425131}
+    - targetCorrespondingSourceObject: {fileID: 8174213923679116834, guid: 7ef39870b91197d42bb25dc8889a7053, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 882392543634349629}
   m_SourcePrefab: {fileID: 100100000, guid: 7ef39870b91197d42bb25dc8889a7053, type: 3}
 --- !u!4 &489874792897701978 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -2131421840579788839, guid: 7ef39870b91197d42bb25dc8889a7053, type: 3}
   m_PrefabInstance: {fileID: 7252987446729545603}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1573847431888275873 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8174213923679116834, guid: 7ef39870b91197d42bb25dc8889a7053, type: 3}
+  m_PrefabInstance: {fileID: 7252987446729545603}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &882392543634349629
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573847431888275873}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.21
+  m_Height: 0.65
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.12, z: 0}
+--- !u!1 &1676300153169666735 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8350979637910893868, guid: 7ef39870b91197d42bb25dc8889a7053, type: 3}
+  m_PrefabInstance: {fileID: 7252987446729545603}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &3370129035035425131
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676300153169666735}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Height: 0.46
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.09, z: 0}
 --- !u!4 &2442695483472402540 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4232825930902646801, guid: 7ef39870b91197d42bb25dc8889a7053, type: 3}
   m_PrefabInstance: {fileID: 7252987446729545603}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4685851463082728092 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2711365659083984159, guid: 7ef39870b91197d42bb25dc8889a7053, type: 3}
+  m_PrefabInstance: {fileID: 7252987446729545603}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &1018856926722265399
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4685851463082728092}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Height: 0.46
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.09, z: 0}
 --- !u!4 &6104372073994917838 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -5759858007707582387, guid: 7ef39870b91197d42bb25dc8889a7053, type: 3}
-  m_PrefabInstance: {fileID: 7252987446729545603}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &6626593577179470942 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4562614919371181021, guid: 7ef39870b91197d42bb25dc8889a7053, type: 3}
   m_PrefabInstance: {fileID: 7252987446729545603}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &7146492269004320872 stripped

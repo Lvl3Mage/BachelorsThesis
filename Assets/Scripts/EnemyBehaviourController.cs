@@ -42,7 +42,6 @@ public class EnemyBehaviourController : MonoBehaviour
 		(Vector3 from, Vector3 direction) aim = gun.GetCurrentAim();
 		Vector3 targetAim = target - aim.from;
 		float alignmentDegrees = Vector3.Angle(targetAim, aim.direction);
-		Debug.Log(alignmentDegrees);
 		if (alignmentDegrees > shotAlignmentThreshold){
 			return;
 		}

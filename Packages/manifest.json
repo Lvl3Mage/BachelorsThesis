@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.lvl3mage.coroutine-toolkit": "1.0.7",
     "com.lvl3mage.interpolation-toolkit": "1.1.4",
     "com.lvl3mage.math-toolkit": "1.0.3",
     "com.unity.ai.navigation": "2.0.12",

@@ -363,4 +363,4 @@ MonoBehaviour:
     m_Bits: 256
   interactionRadius: 0.1
   interactionPoint: {fileID: 1260973215993766878}
-  interactionPriority: 3
+  interactionPriority: 10

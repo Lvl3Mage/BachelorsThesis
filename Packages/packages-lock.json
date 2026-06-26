@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.lvl3mage.coroutine-toolkit": {
+      "version": "1.0.7",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://registry.npmjs.org"
+    },
     "com.lvl3mage.interpolation-toolkit": {
       "version": "1.1.4",
       "depth": 0,
