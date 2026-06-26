@@ -16,6 +16,7 @@ public class ElevatorController : MonoBehaviour
 	[SerializeField] GameObject playerPrefab;
 	[SerializeField] TogglableObject[] doors;
 	[SerializeField] TogglableObject[] panelObjects;
+	[SerializeField] Collider[] panelColliders;
 
 	static bool initialized;
 	static Vector3 relativePlayerPosition;
@@ -83,6 +84,9 @@ public class ElevatorController : MonoBehaviour
 	}
 	IEnumerator AnimatePanel(bool open)
 	{
+		foreach (Collider panelCollider in panelColliders){
+			panelCollider.enabled = open;
+		}
 		yield return CoroutineUtility.WaitForAll(panelObjects.Select(o => o.SetEnabled(open)).ToArray());
 
 	}

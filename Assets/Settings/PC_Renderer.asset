@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Name: Dither filter
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.FullScreenPassRendererFeature
   m_Active: 1
-  injectionPoint: 600
+  injectionPoint: 450
   fetchColorBuffer: 1
   requirements: 7
   passMaterial: {fileID: -876546973899608171, guid: f92365fafe2a5184e8feb9a3bda87b2b, type: 3}
