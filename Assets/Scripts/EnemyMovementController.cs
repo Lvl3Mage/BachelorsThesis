@@ -7,9 +7,12 @@ public class EnemyMovementController : MonoBehaviour
 {
 	[SerializeField] Transform player;
 	[SerializeField] Transform[] targets;
-	[SerializeField] Transform rootBone, leftBone, rightBone;
+	[SerializeField] Transform barrelBone, leftBone, rightBone;
+	[SerializeField] float maxRotationSpeed = 2;
+	[SerializeField] float rotationSlowdownRange = 30f;
 	int curIndex = 0;
 	Rigidbody rb;
+
 	void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
@@ -18,6 +21,8 @@ public class EnemyMovementController : MonoBehaviour
 
 	[SerializeField] float maxMovementSpeed = 4;
 	[SerializeField] float slowdownRange = 2;
+	[SerializeField] float barrelRotationSpeed = 10, thrusterRotationAmplitude = 25;
+
 	void Update()
 	{
 		Vector3 targetPos = targets[curIndex].position;
@@ -30,7 +35,7 @@ public class EnemyMovementController : MonoBehaviour
 			targetPos = targets[curIndex].position;
 		}
 
-		PatrolTo(targetPos);
+		AimAt(targetPos);
 
 
 		ControlBones();
@@ -38,43 +43,60 @@ public class EnemyMovementController : MonoBehaviour
 
 	public void PatrolTo(Vector3 target)
 	{
-
 		Vector3 targetDelta = target - transform.position;
 
 		Vector3 movementDelta = new Vector3(targetDelta.x, 0, targetDelta.z);
 		Vector3 movementDir = movementDelta.normalized;
 
-		float targetVelocity = Mathf.Clamp( RangeTools.TransformRange(movementDelta.magnitude, new Vector2(0, slowdownRange),
-			new Vector2(0, maxMovementSpeed)), 0,maxMovementSpeed);
+		float targetVelocity = Mathf.Clamp(RangeTools.TransformRange(movementDelta.magnitude,
+			new Vector2(0, slowdownRange),
+			new Vector2(0, maxMovementSpeed)), 0, maxMovementSpeed);
 		float alignedVelocity = Vector3.Dot(transform.forward, movementDir * targetVelocity);
 		rb.linearVelocity = Decay.To(rb.linearVelocity, transform.forward * alignedVelocity, 3, Time.deltaTime);
 
-		float angle = Vector2.SignedAngle(new Vector2(movementDir.x, movementDir.z),new Vector2(transform.forward.x, transform.forward.z));
+		float angle = Vector2.SignedAngle(new Vector2(movementDir.x, movementDir.z),
+			new Vector2(transform.forward.x, transform.forward.z));
 		float angleSign = Mathf.Sign(angle);
-		float targetAngularVelocity = Mathf.Clamp(RangeTools.TransformRange(Mathf.Abs(angle), 0f, 30f, 0f, 5f), 0f, 2f) * angleSign;
+		float targetAngularVelocity =
+			Mathf.Clamp(RangeTools.TransformRange(Mathf.Abs(angle), 0f, rotationSlowdownRange, 0f, maxRotationSpeed),
+				0f, maxRotationSpeed) * angleSign;
 		// Debug.Log(angle);
-		rb.angularVelocity = Decay.To(rb.angularVelocity,Vector3.up * targetAngularVelocity,5,Time.deltaTime);
+		rb.angularVelocity = Decay.To(rb.angularVelocity, Vector3.up * targetAngularVelocity, 5, Time.deltaTime);
 	}
 
 	public void AimAt(Vector3 target)
 	{
-
 		Vector3 targetDelta = target - transform.position;
 		Vector3 movementDelta = new Vector3(targetDelta.x, 0, targetDelta.z);
 		Vector3 movementDir = movementDelta.normalized;
 
-		float angle = Vector2.SignedAngle(new Vector2(movementDir.x, movementDir.z),new Vector2(transform.forward.x, transform.forward.z));
+		float angle = Vector2.SignedAngle(new Vector2(movementDir.x, movementDir.z),
+			new Vector2(transform.forward.x, transform.forward.z));
 		float angleSign = Mathf.Sign(angle);
-		float targetAngularVelocity = Mathf.Clamp(RangeTools.TransformRange(Mathf.Abs(angle), 0f, 30f, 0f, 5f), 0f, 2f) * angleSign;
-		rb.angularVelocity = Decay.To(rb.angularVelocity,Vector3.up * targetAngularVelocity,5,Time.deltaTime);
+		float targetAngularVelocity =
+			Mathf.Clamp(RangeTools.TransformRange(Mathf.Abs(angle), 0f, rotationSlowdownRange, 0f, maxRotationSpeed),
+				0f, maxRotationSpeed) * angleSign;
+		rb.angularVelocity = Decay.To(rb.angularVelocity, Vector3.up * targetAngularVelocity, 5, Time.deltaTime);
+
+		Vector3 barrelTargetDelta = target - barrelBone.position;
+		Vector3 horizontalBarrelDelta = new Vector3(barrelTargetDelta.x, 0, barrelTargetDelta.z);
+		targetBarrelRotation = Mathf.Atan2(Vector3.Dot(transform.up, barrelTargetDelta),Vector3.Dot(horizontalBarrelDelta.normalized, barrelTargetDelta));
 	}
+
+	float targetBarrelRotation = 0;
+
 
 	void ControlBones()
 	{
-		float leftVel = Vector3.Dot(rb.GetPointVelocity(leftBone.position),transform.forward);
-		float rightVel = Vector3.Dot(rb.GetPointVelocity(rightBone.position),transform.forward);
+		float leftVel = Vector3.Dot(rb.GetPointVelocity(leftBone.position), transform.forward);
+		float rightVel = Vector3.Dot(rb.GetPointVelocity(rightBone.position), transform.forward);
 
-		leftBone.localRotation = Quaternion.AngleAxis(-leftVel*25-90, transform.right);
-		rightBone.localRotation = Quaternion.AngleAxis(-rightVel*25-90, transform.right);
+		leftBone.localRotation = Quaternion.AngleAxis(-leftVel * thrusterRotationAmplitude, Vector3.right);
+		rightBone.localRotation = Quaternion.AngleAxis(-rightVel * thrusterRotationAmplitude, Vector3.right);
+
+
+		barrelBone.localRotation = Decay.To(barrelBone.localRotation,
+			Quaternion.AngleAxis(targetBarrelRotation * Mathf.Rad2Deg, Vector3.right), barrelRotationSpeed, Time.deltaTime,
+			Quaternion.Slerp);
 	}
 }
