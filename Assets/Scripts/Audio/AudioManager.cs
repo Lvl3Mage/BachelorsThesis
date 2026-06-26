@@ -20,7 +20,7 @@ namespace Project.Sounds
 			SoundController controller = pool.GetReleased();
 			ResetSource(controller.Source);
 			data.Apply(controller.Source);
-			controller.Play();
+			controller.Play(tracking);
 		}
 
 		static void ResetSource(AudioSource source)

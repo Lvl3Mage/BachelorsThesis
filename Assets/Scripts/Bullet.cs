@@ -1,16 +1,34 @@
+using System;
+using Project;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+	[SerializeField] LayerMask targetLayers;
+	[SerializeField] float damage;
+	[SerializeField] GameObject explosionEffect;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	void OnCollisionEnter(Collision collision)
+	{
+		if (!targetLayers.ContainsLayer(collision.collider.gameObject.layer)){
+			Explode();
+			return;
+		}
+
+		IDamageable damageable = collision.collider.gameObject.GetComponentInParent<IDamageable>();
+		if (damageable == null){
+			Explode();
+			return;
+		}
+		damageable.DealDamage(damage);
+		Explode();
+
+	}
+
+	void Explode()
+	{
+		Instantiate(explosionEffect, transform.position, transform.rotation);
+		Destroy(gameObject);
+
+	}
 }

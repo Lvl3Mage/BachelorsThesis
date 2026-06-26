@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6094835496772188083}
   - component: {fileID: 3615515758301643739}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: EnemyBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,6 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a4da245ce1e85b48a2b44ac8607fedd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  targetLayers:
+    serializedVersion: 2
+    m_Bits: 512
+  damage: 20
+  explosionEffect: {fileID: 7962187805622479823, guid: 9f0744975cc57e54398e8ddd18806f70, type: 3}
 --- !u!54 &3615515758301643739
 Rigidbody:
   m_ObjectHideFlags: 0

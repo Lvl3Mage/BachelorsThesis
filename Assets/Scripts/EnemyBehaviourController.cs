@@ -1,3 +1,4 @@
+using Project;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -8,15 +9,16 @@ public class EnemyBehaviourController : MonoBehaviour
 	[FormerlySerializedAs("targets")] [SerializeField] Transform[] waypoints;
 
 	[SerializeField] EnemyMovementController movementController;
-
+	[SerializeField] EnemyGun gun;
+	[SerializeField] [Range(0f, 90f)] float shotAlignmentThreshold = 5f;
 
 	// Update is called once per frame
 	void Update()
 	{
 
-		foreach (var target in PlayerTargetHolder.GetTargets()){
+		foreach (var target in PlayerTargetHolder.GetTargets()){//todo stagger this
 			if (CheckPlayerVisibility(target)){
-				movementController.AimAt(target);
+				TargetAt(target);
 				return;
 			}
 		}
@@ -29,11 +31,27 @@ public class EnemyBehaviourController : MonoBehaviour
 		Vector3 targetDelta = targetPoint - transform.position;
 		if (!Physics.Raycast(transform.position, targetDelta, out RaycastHit hit, targetDelta.magnitude,
 			    playerLayers.value | sightBlockingLayers.value)) return false;
-		Debug.DrawLine(transform.position, hit.point);
-		return (playerLayers & (1 << hit.collider.gameObject.layer)) != 0;
+		return playerLayers.ContainsLayer(hit.collider.gameObject.layer);
 	}
 
 	int curTargetIndex = 0;
+
+	void TargetAt(Vector3 target)
+	{
+		movementController.AimAt(target);
+		(Vector3 from, Vector3 direction) aim = gun.GetCurrentAim();
+		Vector3 targetAim = target - aim.from;
+		float alignmentDegrees = Vector3.Angle(targetAim, aim.direction);
+		Debug.Log(alignmentDegrees);
+		if (alignmentDegrees > shotAlignmentThreshold){
+			return;
+		}
+		if (gun.IsOnCooldown()){
+			return;
+		}
+		gun.Shoot();
+
+	}
 
 	void Patrol()
 	{
