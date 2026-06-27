@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 5563700360812897748}
   - component: {fileID: 8158255628484315412}
   - component: {fileID: 7928975807613186284}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Interior
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -371,7 +371,10 @@ MonoBehaviour:
   - {fileID: 942436548765247628}
   panelObjects:
   - {fileID: 5541266113187603675}
-  panelColliders: []
+  panelColliders:
+  - {fileID: 7895636755356816586}
+  - {fileID: 8173670059771382249}
+  - {fileID: 7794366099440778576}
 --- !u!1 &2655181922050240939
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,7 +607,7 @@ GameObject:
   - component: {fileID: 2385915472827020399}
   - component: {fileID: 8135805207988897998}
   - component: {fileID: 3580622028418026760}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Door1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1008,7 +1011,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6419430331027916137
 Transform:
   m_ObjectHideFlags: 0
@@ -1199,7 +1202,7 @@ GameObject:
   - component: {fileID: 3547685652379374943}
   - component: {fileID: 7721772337149431369}
   - component: {fileID: 942436548765247628}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Door1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1689,6 +1692,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6326351136893091781, guid: c3eaa4205388dfe4a9254c72f95b0376, type: 3}
   m_PrefabInstance: {fileID: 2778027200178266617}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &8173670059771382249 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 6332972125033654288, guid: c3eaa4205388dfe4a9254c72f95b0376, type: 3}
+  m_PrefabInstance: {fileID: 2778027200178266617}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4211379483554053338
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1846,6 +1854,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3eaa4205388dfe4a9254c72f95b0376, type: 3}
+--- !u!65 &7895636755356816586 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 6332972125033654288, guid: c3eaa4205388dfe4a9254c72f95b0376, type: 3}
+  m_PrefabInstance: {fileID: 4211379483554053338}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7906743717665293087 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6326351136893091781, guid: c3eaa4205388dfe4a9254c72f95b0376, type: 3}
@@ -2016,6 +2029,11 @@ PrefabInstance:
 --- !u!4 &7783254680530971269 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6326351136893091781, guid: c3eaa4205388dfe4a9254c72f95b0376, type: 3}
+  m_PrefabInstance: {fileID: 4307721853475444032}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &7794366099440778576 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 6332972125033654288, guid: c3eaa4205388dfe4a9254c72f95b0376, type: 3}
   m_PrefabInstance: {fileID: 4307721853475444032}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &9179956470432286604 stripped
