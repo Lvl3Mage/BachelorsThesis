@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ShotSound
   m_EditorClassIdentifier: Assembly-CSharp::Project.Sounds.RandomizedGameSound
   clips:
-  - {fileID: 8300000, guid: bc67161310d82d740b51ae34370d5266, type: 3}
+  - {fileID: 8300000, guid: 3143440ec3de50a42b304940dc30d607, type: 3}
   config:
     volume: 0.303
     pitch: 1
