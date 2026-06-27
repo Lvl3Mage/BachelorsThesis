@@ -13,6 +13,9 @@ public class PlayerRecenter : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
+
+		playerRig.position = transform.TransformPoint(recenterOffset);
+		playerRig.localRotation = recenterRotation;
 	}
 
 	float recenterTimer = 0;
@@ -33,15 +36,19 @@ public class PlayerRecenter : MonoBehaviour
 			Vector3 cameraPosition = transform.InverseTransformPoint(camera.position);
 			Vector3 newOffset = transform.InverseTransformPoint(playerRig.position) - cameraPosition;
 			newOffset.y +=1.36144f;
-			playerRig.position = transform.TransformPoint(newOffset);
-
+			recenterOffset = newOffset;
+			playerRig.position = transform.TransformPoint(recenterOffset);
 			float cameraLookDirection = camera.eulerAngles.y;
 			float rigLookDirection = playerRig.eulerAngles.y;
+			recenterRotation = Quaternion.AngleAxis(rigLookDirection - cameraLookDirection, Vector3.up);
 
-			playerRig.localRotation = Quaternion.AngleAxis(rigLookDirection - cameraLookDirection, Vector3.up);
+			playerRig.localRotation = recenterRotation;
 
 		}
 	}
+
+	static Vector3 recenterOffset = Vector3.zero;
+	static Quaternion recenterRotation = Quaternion.identity;
 
 	bool IsTriggeringRecenter()
 	{

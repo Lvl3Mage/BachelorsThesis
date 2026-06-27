@@ -18,8 +18,8 @@ TagManager:
   - Interactable
   - Player
   - Enemy
-  - 
-  - 
+  - Props
+  - EnemyHitbox
   - 
   - 
   - 

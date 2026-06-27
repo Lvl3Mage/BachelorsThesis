@@ -5,10 +5,16 @@ using UnityEngine;
 public class HandVisualizer : MonoBehaviour
 {
 	HandPose pose;
+	bool initialized = false;
 	[SerializeField] Transform relativeRef;
 	public void SetPose(HandPose newPose)
 	{
 		pose = newPose;
+		if (initialized) return;
+		initialized = true;
+
+		transform.position = pose.WsPosition;
+		transform.rotation = pose.WsRotation;
 	}
 
 	// Vector3 lastRelativePosition;

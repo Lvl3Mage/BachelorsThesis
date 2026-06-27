@@ -1,4 +1,5 @@
 using System.Collections;
+using Project.Sounds;
 using UnityEngine;
 
 public class EnemyGun : MonoBehaviour
@@ -8,12 +9,14 @@ public class EnemyGun : MonoBehaviour
 	[SerializeField] Rigidbody bulletPrefab;
 	[SerializeField] float cooldownTime = 2;
 	[SerializeField] float bulletVelocity = 20;
+	[SerializeField] GameSound shotSound;
 
 	public void Shoot()
 	{
 		if (onCooldown) return;
 		Rigidbody bullet = Instantiate(bulletPrefab, barrelEnd.position, barrelEnd.rotation);
 		bullet.linearVelocity = bullet.transform.forward*bulletVelocity;
+		AudioManager.Play(shotSound, () => this? transform.position : Vector3.zero);
 		StartCoroutine(Cooldown());
 	}
 

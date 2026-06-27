@@ -7,6 +7,7 @@ public class WheelController : MonoBehaviour
 	[SerializeField] Collider collider;
 	[SerializeField] float gripRadius;
 	[SerializeField] float gripOffset;
+	[SerializeField] float friction = 2;
 
 	[SerializeField]float angularVelocity = 0;
 	// [SerializeField] Transform target;
@@ -16,7 +17,7 @@ public class WheelController : MonoBehaviour
 	void Update()
 	{
 		transform.Rotate(Vector3.right, angularVelocity * Time.deltaTime);
-		angularVelocity = Decay.To(angularVelocity, 0, 2, Time.deltaTime);
+		angularVelocity = Decay.To(angularVelocity, 0, friction, Time.deltaTime);
 		//
 		// SetVelocityAt(target.position, (target.position - prevpos )/ Time.deltaTime);
 		// prevpos = target.position;

@@ -13,9 +13,11 @@ public class GunHolderBehaviour : MonoBehaviour, IHandBehaviour
 	[SerializeField] GameSound ungripSound;
 	HandInput hand;
 
+	Transform player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
+	    player = GameObject.FindGameObjectWithTag("Player").transform;
 	    hand = GetComponent<HandInput>();
     }
 
@@ -37,7 +39,7 @@ public class GunHolderBehaviour : MonoBehaviour, IHandBehaviour
     public void Enter()
     {
 	    equippedGun = slot.RetrieveGun();
-	    equippedGun.Equip(gunLocation);
+	    equippedGun.Equip(gunLocation,player);
 	    AudioManager.Play(gripSound,()=>transform.position);
     }
 
@@ -48,10 +50,17 @@ public class GunHolderBehaviour : MonoBehaviour, IHandBehaviour
 	    equippedGun = null;
     }
 
+    bool inputTriggered = false;
     public void Tick()
     {
 	    if (hand.GetInputTrigger() > 0.8f){
-		    equippedGun?.TryShoot();
+		    if (!inputTriggered){
+				equippedGun?.TryShoot();
+		    }
+		    inputTriggered = true;
+	    }
+	    else{
+		    inputTriggered = false;
 	    }
     }
 

@@ -43,8 +43,9 @@ GameObject:
   - component: {fileID: 6468113556244673354}
   - component: {fileID: 6876089333599071176}
   - component: {fileID: 2224268187645051091}
-  - component: {fileID: 8082287277937291411}
   - component: {fileID: 8150786619907237590}
+  - component: {fileID: 2498281311818834251}
+  - component: {fileID: 9217892939356470537}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -155,18 +156,6 @@ MonoBehaviour:
   floorContactLeft: {fileID: 7809389901887765882}
   floorContactRight: {fileID: 2414300158275925650}
   linearBoost: 3
---- !u!114 &8082287277937291411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 992979182724848965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c9286d01ede2db4d8b1462c126c4334, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!114 &8150786619907237590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +172,39 @@ MonoBehaviour:
   - {fileID: 3694165036371464541}
   - {fileID: 1944250978580678326}
   - {fileID: 2717412009853657335}
+--- !u!114 &2498281311818834251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992979182724848965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a19e29700c275b44905c5de89c803f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  destructibleObject: {fileID: 9217892939356470537}
+  hideOnDestroyed: []
+  deathEffect: {fileID: 2100000, guid: ab19c40cc5d7f6f409ad1ca7cd0b74cf, type: 2}
+  deathEffectLength: 1
+--- !u!114 &9217892939356470537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992979182724848965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7a7e66bf91747f41a8aa70ae5c49eef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestructibleObject
+  destructionEffect: {fileID: 2193348272120904037, guid: fb39e4147fdb17344bd563c169cc9491, type: 3}
+  health: 200
+  destructionSound: {fileID: 11400000, guid: 7c8877124657ee443a5f73efc6a1cf78, type: 2}
+  damageSound: {fileID: 0}
+  destroyOnKill: 0
 --- !u!1 &1396603664070667923
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,6 +344,7 @@ MonoBehaviour:
   collider: {fileID: 0}
   gripRadius: 0.36
   gripOffset: 0.1
+  friction: 1.4
   angularVelocity: 0
 --- !u!1 &2598860697051027657
 GameObject:
@@ -897,6 +920,7 @@ MonoBehaviour:
   collider: {fileID: 0}
   gripRadius: 0.36
   gripOffset: 0.1
+  friction: 1.4
   angularVelocity: 0
 --- !u!1 &7456086665534482793
 GameObject:

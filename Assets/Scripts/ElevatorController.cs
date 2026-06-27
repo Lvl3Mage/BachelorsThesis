@@ -49,6 +49,12 @@ public class ElevatorController : MonoBehaviour
 		player.transform.position = transform.TransformPoint(relativePlayerPosition);
 		player.transform.rotation = transform.rotation * relativePlayerRotation;
 	}
+
+	public void ReloadScene()
+	{
+		StartCoroutine(SwitchScene(SceneManager.GetActiveScene().buildIndex));
+
+	}
 	public void LoadScene(int sceneBuildIndex)
 	{
 		StartCoroutine(SwitchScene(sceneBuildIndex));

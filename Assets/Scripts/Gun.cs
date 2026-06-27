@@ -18,6 +18,7 @@ public class Gun : MonoBehaviour
 	[SerializeField] float linearRecoil = 0.2f;
 	[SerializeField] Vector2 recoilYaw = new Vector2(-30f,30f);
 	[SerializeField] Vector2 recoilPitch = new Vector2(-60f, -30f);
+	[SerializeField] float recoilDecay = 18;
 	int currentAmmo;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -62,14 +63,15 @@ public class Gun : MonoBehaviour
 	    if (!assignedTarget) return;
 	    transform.position = Decay.To(transform.position, assignedTarget.position + recoilOffset, attractionStrength, Time.deltaTime);
 	    transform.rotation = Decay.To(transform.rotation, assignedTarget.rotation *recoilRotationOffset, attractionStrength, Time.deltaTime, Quaternion.Slerp);
-	    recoilOffset = Decay.To(recoilOffset, Vector3.zero, 10, Time.deltaTime);
-	    recoilRotationOffset = Decay.To(recoilRotationOffset, Quaternion.identity, 10, Time.deltaTime, Quaternion.Slerp);
+	    recoilOffset = Decay.To(recoilOffset, Vector3.zero, recoilDecay, Time.deltaTime);
+	    recoilRotationOffset = Decay.To(recoilRotationOffset, Quaternion.identity, recoilDecay, Time.deltaTime, Quaternion.Slerp);
     }
 
     Transform assignedTarget;
-    public void Equip(Transform target)
+    public void Equip(Transform target, Transform relativeTo)
     {
 	    assignedTarget = target;
+	    transform.parent = relativeTo;
     }
 
     public void Discard()

@@ -37,7 +37,11 @@ public class EnemyMovementController : MonoBehaviour
 			new Vector2(0, slowdownRange),
 			new Vector2(0, maxMovementSpeed)), 0, maxMovementSpeed);
 		float alignedVelocity = Vector3.Dot(transform.forward, movementDir * targetVelocity);
-		rb.linearVelocity = Decay.To(rb.linearVelocity, transform.forward * alignedVelocity, 3, Time.deltaTime);
+
+		float verticalVel = Mathf.Clamp(RangeTools.TransformRange(Mathf.Abs(targetDelta.y),
+			new Vector2(0, slowdownRange),
+			new Vector2(0, maxMovementSpeed)), 0, maxMovementSpeed) * Mathf.Sign(targetDelta.y);
+		rb.linearVelocity = Decay.To(rb.linearVelocity, transform.forward * alignedVelocity + transform.up*verticalVel, 3, Time.deltaTime);
 
 		float angle = Vector2.SignedAngle(new Vector2(movementDir.x, movementDir.z),
 			new Vector2(transform.forward.x, transform.forward.z));

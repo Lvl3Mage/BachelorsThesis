@@ -1,3 +1,4 @@
+using System;
 using Project.Sounds;
 using UnityEngine;
 
@@ -35,6 +36,7 @@ public class DestructibleObject : MonoBehaviour, IDamageable
 
     void ObjectDestroyed()
     {
+	    OnDestroyed?.Invoke();
 	    if (destructionEffect){
 			Instantiate(destructionEffect, transform.position, transform.rotation);
 	    }
@@ -52,4 +54,6 @@ public class DestructibleObject : MonoBehaviour, IDamageable
     {
 	    return health <= 0;
     }
+
+    public event Action OnDestroyed;
 }
