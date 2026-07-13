@@ -7,6 +7,7 @@ public class HandVisualizer : MonoBehaviour
 	HandPose pose;
 	bool initialized = false;
 	[SerializeField] Transform relativeRef;
+	[SerializeField] float animationSpeed = 15f;
 	public void SetPose(HandPose newPose)
 	{
 		pose = newPose;
@@ -26,8 +27,8 @@ public class HandVisualizer : MonoBehaviour
 		Vector3 currentPos = relativeRef.InverseTransformPoint(transform.position);
 		Quaternion currentRot = Quaternion.Inverse(relativeRef.rotation) * transform.rotation;
 
-		currentPos = Decay.To(currentPos, targetPos, 15f, Time.deltaTime);
-		currentRot = Decay.To(currentRot, targetRot, 15f, Time.deltaTime, Quaternion.Slerp);
+		currentPos = Decay.To(currentPos, targetPos, animationSpeed, Time.deltaTime);
+		currentRot = Decay.To(currentRot, targetRot, animationSpeed, Time.deltaTime, Quaternion.Slerp);
 		transform.position = relativeRef.TransformPoint(currentPos);
 		transform.rotation = relativeRef.rotation * currentRot;
 	}

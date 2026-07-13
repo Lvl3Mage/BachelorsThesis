@@ -51,7 +51,7 @@ public class Gun : MonoBehaviour
 	    bullet.GetComponent<Rigidbody>().linearVelocity = gunPoint.forward * muzzleVelocity;
 	    recoilOffset -= gunPoint.forward * linearRecoil;
 	    recoilRotationOffset *= Quaternion.AngleAxis(Random.Range(recoilPitch.x,recoilPitch.y),Vector3.right) *Quaternion.AngleAxis(Random.Range(recoilYaw.x,recoilYaw.y), Vector3.up);
-	    AudioManager.Play(shotSound, ()=>this ? transform.position :  Vector3.zero);
+	    AudioManager.Play(shotSound, ()=>this?.transform.position);
     }
 
     Vector3 recoilOffset;

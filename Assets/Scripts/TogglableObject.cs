@@ -14,10 +14,10 @@ public class TogglableObject : MonoBehaviour
 	public IEnumerator SetEnabled(bool enable)
 	{
 		if (enable && enabledSound){
-			AudioManager.Play(enabledSound, () => this ? transform.position : Vector3.zero);
+			AudioManager.Play(enabledSound, () => this?.transform.position);
 		}
 		if (!enable && disabledSound){
-			AudioManager.Play(disabledSound, () => this ? transform.position : Vector3.zero);
+			AudioManager.Play(disabledSound, () => this?.transform.position);
 		}
 		float time = 0;
 		Vector3 start = enable ? disabledState.position : enabledState.position;

@@ -186,6 +186,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   destructibleObject: {fileID: 9217892939356470537}
   hideOnDestroyed: []
+  effectSpeed: 2
+  effectCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2.8616073
+      outSlope: 2.8616073
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.037441496
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.27046433
+      outSlope: 0.27046433
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.12324494
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   deathEffect: {fileID: 2100000, guid: ab19c40cc5d7f6f409ad1ca7cd0b74cf, type: 2}
   deathEffectLength: 1
 --- !u!114 &9217892939356470537
@@ -201,7 +226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DestructibleObject
   destructionEffect: {fileID: 2193348272120904037, guid: fb39e4147fdb17344bd563c169cc9491, type: 3}
-  health: 200
+  maxHealth: 200
   destructionSound: {fileID: 11400000, guid: 7c8877124657ee443a5f73efc6a1cf78, type: 2}
   damageSound: {fileID: 0}
   destroyOnKill: 0
@@ -344,7 +369,7 @@ MonoBehaviour:
   collider: {fileID: 0}
   gripRadius: 0.36
   gripOffset: 0.1
-  friction: 1.4
+  friction: 1
   angularVelocity: 0
 --- !u!1 &2598860697051027657
 GameObject:
@@ -589,14 +614,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4912324859239616884}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5, y: -0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: -0.29600018, z: 0.25410002}
+  m_LocalRotation: {x: 0.9396927, y: -0, z: -0, w: -0.3420201}
+  m_LocalPosition: {x: 0, y: -0.296, z: 0.3073}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6088711280243205303}
   m_Father: {fileID: 1983059370918196096}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 220, y: 0, z: 0}
 --- !u!114 &1443309146839621120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -920,7 +945,7 @@ MonoBehaviour:
   collider: {fileID: 0}
   gripRadius: 0.36
   gripOffset: 0.1
-  friction: 1.4
+  friction: 1
   angularVelocity: 0
 --- !u!1 &7456086665534482793
 GameObject:

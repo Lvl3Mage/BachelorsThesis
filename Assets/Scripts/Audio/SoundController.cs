@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Sounds
 {
-	public delegate Vector3 SoundTracking();
+	public delegate Vector3? SoundTracking();
 	public class SoundController : MonoBehaviour
 	{
 		public AudioSource Source { get; private set; }
@@ -30,7 +30,10 @@ namespace Sounds
 				return;
 			}
 
-			transform.position = tracking();
+			Vector3? target = tracking();
+			if (target.HasValue){
+				transform.position = target.Value;
+			}
 		}
 	}
 

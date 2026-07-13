@@ -64,13 +64,13 @@ public class WheelGrabBehaviour : MonoBehaviour, IHandBehaviour
 		Debug.Assert(validWheel);
 		grabbedWheel = validWheel;
 		SetPreviousPose(grabbedWheel.GetGripPoseAt(transform.position));
-		AudioManager.Play(gripSound,()=>transform.position);
+		AudioManager.Play(gripSound,()=>this?.transform.position);
 	}
 
 	public void Exit()
 	{
 		grabbedWheel = null;
-		AudioManager.Play(ungripSound,()=>transform.position);
+		AudioManager.Play(ungripSound,()=>this?.transform.position);
 	}
 
 	public void Tick()

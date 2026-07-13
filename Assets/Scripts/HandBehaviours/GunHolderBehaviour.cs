@@ -40,12 +40,12 @@ public class GunHolderBehaviour : MonoBehaviour, IHandBehaviour
     {
 	    equippedGun = slot.RetrieveGun();
 	    equippedGun.Equip(gunLocation,player);
-	    AudioManager.Play(gripSound,()=>transform.position);
+	    AudioManager.Play(gripSound,()=>this?.transform.position);
     }
 
     public void Exit()
     {
-	    AudioManager.Play(ungripSound, ()=>transform.position);
+	    AudioManager.Play(ungripSound, ()=>this?.transform.position);
 	    equippedGun?.Discard();
 	    equippedGun = null;
     }

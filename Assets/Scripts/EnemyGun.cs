@@ -16,7 +16,7 @@ public class EnemyGun : MonoBehaviour
 		if (onCooldown) return;
 		Rigidbody bullet = Instantiate(bulletPrefab, barrelEnd.position, barrelEnd.rotation);
 		bullet.linearVelocity = bullet.transform.forward*bulletVelocity;
-		AudioManager.Play(shotSound, () => this? transform.position : Vector3.zero);
+		AudioManager.Play(shotSound, () => this?.transform.position);
 		StartCoroutine(Cooldown());
 	}
 

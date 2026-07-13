@@ -96,7 +96,7 @@ MonoBehaviour:
   requirements: 7
   passMaterial: {fileID: -876546973899608171, guid: f92365fafe2a5184e8feb9a3bda87b2b, type: 3}
   passIndex: 0
-  bindDepthStencilAttachment: 1
+  bindDepthStencilAttachment: 0
   m_Version: 1
 --- !u!114 &7833122117494664109
 MonoBehaviour:

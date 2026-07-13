@@ -12,8 +12,6 @@ public class WheelController : MonoBehaviour
 	[SerializeField]float angularVelocity = 0;
 	// [SerializeField] Transform target;
 	// Vector3 prevpos;
-
-	// Update is called once per frame
 	void Update()
 	{
 		transform.Rotate(Vector3.right, angularVelocity * Time.deltaTime);

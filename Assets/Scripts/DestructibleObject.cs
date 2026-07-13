@@ -1,18 +1,25 @@
 using System;
 using Project.Sounds;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class DestructibleObject : MonoBehaviour, IDamageable
 {
 	[SerializeField] GameObject destructionEffect;
 
-	[SerializeField] float health;
+	float health;
+	[FormerlySerializedAs("health")] [SerializeField] float maxHealth;
 
 	[SerializeField] GameSound destructionSound;
 	[SerializeField] GameSound damageSound;
 	[SerializeField] bool destroyOnKill;
 
-    public void DealDamage(float damage)
+	void Awake()
+	{
+		health = maxHealth;
+	}
+
+	public void DealDamage(float damage)
     {
 	    if (IsDestroyed()){
 		    return;
@@ -29,8 +36,9 @@ public class DestructibleObject : MonoBehaviour, IDamageable
 
     void ObjectDamaged()
     {
+	    OnDamaged?.Invoke();
 	    if (damageSound){
-			AudioManager.Play(damageSound, ()=> this ? transform.position : Vector3.zero);
+			AudioManager.Play(damageSound, ()=> this?.transform.position);
 	    }
     }
 
@@ -41,7 +49,7 @@ public class DestructibleObject : MonoBehaviour, IDamageable
 			Instantiate(destructionEffect, transform.position, transform.rotation);
 	    }
 	    if (destructionSound){
-			AudioManager.Play(destructionSound, ()=> this ? transform.position : Vector3.zero);
+			AudioManager.Play(destructionSound, ()=> this?.transform.position);
 
 	    }
 	    if (destroyOnKill){
@@ -56,4 +64,7 @@ public class DestructibleObject : MonoBehaviour, IDamageable
     }
 
     public event Action OnDestroyed;
+    public event Action OnDamaged;
+    public float GetHealth() => health;
+    public float GetMaxHealth() => maxHealth;
 }
